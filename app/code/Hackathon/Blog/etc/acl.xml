@@ -5,8 +5,8 @@
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
-                        <resource id="Hackathon_Blog::blog">
-                            <resource id="Hackathon_Blog::config_blog" title="Blog Section" />
+                        <resource id="Hackathon_Blog::hackathon">
+                            <resource id="Hackathon_Blog::blog" title="Blog Section" />
                         </resource>
                     </resource>
                 </resource>
