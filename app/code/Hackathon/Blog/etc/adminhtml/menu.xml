@@ -7,6 +7,6 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
     <menu>
-        <add id="Magento_Backend::hackathon_blog" action="adminhtml/index/index" title="Hackathan" module="Hackathon_Blog" sortOrder="110" />
+        <add id="Hackathon_Blog::blog" title="Hackathon blog" module="Hackathon_Blog" sortOrder="300" parent="Magento_Backend::content_elements" action="hackathon/index" resource="Hackathon_Blog::blog" />
     </menu>
 </config>
