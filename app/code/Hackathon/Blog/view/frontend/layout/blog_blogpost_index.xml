@@ -2,7 +2,9 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <block class="Hackathon\Blog\Block\BlogpostList" name="blogpost.list" before="-" template="list.phtml">
+            <!--<block class="Magento\Framework\View\Element\Template" name="blogpost.list" template="Hackathon_Blog::list.phtml">-->
+            <!--</block>-->
+            <block class="Hackathon\Blog\Block\BlogpostList" name="blogpost.list" template="list.phtml">
             </block>
         </referenceContainer>
     </body>

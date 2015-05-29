@@ -2,37 +2,37 @@
 <routes
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../../../../app/code/Magento/Webapi/etc/webapi.xsd">
-    <route url="/V1/hackathon_blog/" method="GET">
+    <route url="/V1/blog/" method="GET">
         <service class="Hackathon\Blog\Api\BlogpostRepositoryInterface" method="getList" />
         <resources>
             <resource ref="anonymous" />
         </resources>
     </route>
-    <route url="/V1/hackathon_blog/:id" method="GET">
+    <route url="/V1/blog/:id" method="GET">
         <service class="Hackathon\Blog\Api\BlogpostRepositoryInterface" method="getById" />
         <resources>
             <resource ref="anonymous" />
         </resources>
     </route>
-    <route url="/V1/hackathon_blog/slug/:slug" method="GET">
+    <route url="/V1/blog/:slug" method="GET">
         <service class="Hackathon\Blog\Api\BlogpostRepositoryInterface" method="getBySlug" />
         <resources>
             <resource ref="anonymous" />
         </resources>
     </route>
-    <route url="/V1/hackathon_blog/" method="POST">
+    <route url="/V1/blog/" method="POST">
         <service class="Hackathon\Blog\Api\BlogpostRepositoryInterface" method="save" />
         <resources>
             <resource ref="Hackathon_Blog::manage" />
         </resources>
     </route>
-    <route url="/V1/hackathon_blog/" method="PUT">
+    <route url="/V1/blog/" method="PUT">
         <service class="Hackathon\Blog\Api\BlogpostRepositoryInterface" method="save" />
         <resources>
             <resource ref="Hackathon_Blog::manage" />
         </resources>
     </route>
-    <route url="/V1/hackathon_blog/:id" method="DELETE">
+    <route url="/V1/blog/:id" method="DELETE">
         <service class="Hackathon\Blog\Api\BlogpostRepositoryInterface" method="deleteById" />
         <resources>
             <resource ref="Hackathon_Blog::manage" />

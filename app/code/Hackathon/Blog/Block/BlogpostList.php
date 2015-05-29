@@ -12,7 +12,9 @@ class BlogpostList extends \Magento\Framework\View\Element\Template
      * @param Template\Context $context
      * @param array $data
      */
-    public function __construct(Template\Context $context, BlogpostRepositoryInterface $repositoryInterface, array $data = [])
+    public function __construct(\Magento\Framework\View\Element\Template\Context $context,
+                                \Hackathon\Blog\Model\BlogpostRepository $repositoryInterface,
+                                array $data = [])
     {
         $this->_repositoryInterface = $repositoryInterface;
         parent::__construct($context, $data);

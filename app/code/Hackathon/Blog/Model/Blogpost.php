@@ -3,12 +3,10 @@
 namespace Hackathon\Blog\Model;
 
 use \Hackathon\Blog\Api\Data\BlogpostInterface;
+use Hackathon\Blog\Api\Data\int;
+use Hackathon\Blog\Api\Data\string;
 
 class Blogpost extends \Magento\Framework\Model\AbstractExtensibleModel implements BlogpostInterface {
-
-	protected function _construct() {
-		$this->_init("Hackathon\Blog\Model\Resource\Blogpost");
-	}
 
 	/**
 	 * @return string
@@ -22,7 +20,7 @@ class Blogpost extends \Magento\Framework\Model\AbstractExtensibleModel implemen
 	 *
 	 * @return $this
 	 */
-	public function setSlug( $slug ) {
+	public function setSlug( string $slug ) {
 		return $this->setData(self::SLUG, $slug);
 	}
 
@@ -38,7 +36,7 @@ class Blogpost extends \Magento\Framework\Model\AbstractExtensibleModel implemen
 	 *
 	 * @return $this
 	 */
-	public function setStatus( $status ) {
+	public function setStatus( string $status ) {
 		return $this->setData(self::STATUS, $status);
 	}
 
@@ -50,11 +48,11 @@ class Blogpost extends \Magento\Framework\Model\AbstractExtensibleModel implemen
 	}
 
 	/**
-	 * @param string $title
+	 * @param string|string $title
 	 *
 	 * @return $this
 	 */
-	public function setTitle( $title ) {
+	public function setTitle( string $title ) {
 		return $this->setData(self::TITLE, $title);
 	}
 
@@ -70,7 +68,7 @@ class Blogpost extends \Magento\Framework\Model\AbstractExtensibleModel implemen
 	 *
 	 * @return $this
 	 */
-	public function setContent( $content ) {
+	public function setContent( string $content ) {
 		return $this->setData(self::CONTENT, $content);
 	}
 
@@ -86,7 +84,7 @@ class Blogpost extends \Magento\Framework\Model\AbstractExtensibleModel implemen
 	 *
 	 * @return $this
 	 */
-	public function setPostdate( $postdate ) {
+	public function setPostdate( string $postdate ) {
 		return $this->setData(self::POSTDATE, $postdate);
 	}
 
@@ -102,7 +100,7 @@ class Blogpost extends \Magento\Framework\Model\AbstractExtensibleModel implemen
 	 *
 	 * @return $this
 	 */
-	public function setKeywords( $keywords ) {
+	public function setKeywords( string $keywords ) {
 		return $this->setData(self::KEYWORDS, $keywords);
 	}
 
@@ -118,7 +116,7 @@ class Blogpost extends \Magento\Framework\Model\AbstractExtensibleModel implemen
 	 *
 	 * @return $this
 	 */
-	public function setExcerpt( $excerpt ) {
+	public function setExcerpt( string $excerpt ) {
 		return $this->setData(self::EXCERPT, $excerpt);
 	}
 

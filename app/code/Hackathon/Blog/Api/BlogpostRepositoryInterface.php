@@ -16,14 +16,14 @@ interface BlogpostRepositoryInterface {
 	 *
 	 * @return \Hackathon\Blog\Api\Data\BlogpostInterface
 	 */
-	public function getById( $id );
+	public function getById(int $id);
 
 	/**
-	 * @param string $slug
+	 * @param srtring $slug
 	 *
 	 * @return \Hackathon\Blog\Api\Data\BlogpostInterface
 	 */
-	public function getBySlug( $slug );
+	public function getBySlug(srtring $slug);
 
 	/**
 	 * @param Data\BlogpostInterface $blogpost
@@ -37,12 +37,12 @@ interface BlogpostRepositoryInterface {
 	 *
 	 * @return bool Will return true if deleted
 	 */
-	public function deleteById( $id );
+	public function deleteById(int $id);
 
 	/**
 	 * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
 	 *
 	 * @return \Hackathon\Blog\Api\BlogpostSearchResultsInterface
 	 */
-	public function getList(\Magento\Framework\Api\SearchCriteria $searchCriteria = null);
+	public function getList(\Magento\Framework\Api\SearchCriteria $searchCriteria);
 }
