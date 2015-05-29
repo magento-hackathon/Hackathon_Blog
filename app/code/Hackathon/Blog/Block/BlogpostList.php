@@ -5,6 +5,7 @@ namespace Hackathon\Blog\Block;
 class BlogpostList extends \Magento\Framework\View\Element\Template
 {
     private $_repositoryInterface = null;
+    private $_searchCriteriaBuilder = null;
 
     /**
      * Constructor
@@ -13,10 +14,12 @@ class BlogpostList extends \Magento\Framework\View\Element\Template
      * @param array $data
      */
     public function __construct(\Magento\Framework\View\Element\Template\Context $context,
-                                \Hackathon\Blog\Model\BlogpostRepository $repositoryInterface,
+                                \Hackathon\Blog\Api\BlogpostRepositoryInterface $repositoryInterface,
+                                \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
                                 array $data = [])
     {
         $this->_repositoryInterface = $repositoryInterface;
+        $this->_searchCriteriaBuilder = $searchCriteriaBuilder;
         parent::__construct($context, $data);
     }
 
@@ -28,6 +31,10 @@ class BlogpostList extends \Magento\Framework\View\Element\Template
      */
     public function getPosts()
     {
-        return $this->_repositoryInterface;
+        $this->_searchCriteriaBuilder->setCurrentPage(1);
+        $this->_searchCriteriaBuilder->setPageSize(10);
+        $searchCriteria = $this->_searchCriteriaBuilder->create();
+
+        return $this->_repositoryInterface->getList($searchCriteria);
     }
 }
