@@ -2,4 +2,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">>
     <preference for="Hackathon\Blog\Api\BlogpostRepositoryInterface"
                 type="Hackathon\Blog\Model\BlogpostRepository" />
+    <preference for="Hackathon\Blog\Api\Data\BlogpostSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults" />
 </config>

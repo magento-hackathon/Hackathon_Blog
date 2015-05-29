@@ -42,7 +42,7 @@ interface BlogpostRepositoryInterface {
 	/**
 	 * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
 	 *
-	 * @return \Hackathon\Blog\Api\BlogpostSearchResultsInterface
+	 * @return \Hackathon\Blog\Api\Data\BlogpostSearchResultsInterface
 	 */
-	public function getList(\Magento\Framework\Api\SearchCriteria $searchCriteria = null);
+	public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria );
 }
