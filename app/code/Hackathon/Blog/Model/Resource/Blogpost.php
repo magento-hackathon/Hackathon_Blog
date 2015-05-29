@@ -1,6 +1,6 @@
 <?php
 
-namespace \Hackathon\Blog\Model\Resource;
+namespace Hackathon\Blog\Model\Resource;
 
 class Blogpost extends \Magento\Framework\Model\Resource\Db\AbstractDb {
 	/**
@@ -9,7 +9,7 @@ class Blogpost extends \Magento\Framework\Model\Resource\Db\AbstractDb {
 	 * @return void
 	 */
 	protected function _construct() {
-		$this->_init('blogpost', 'blogpost_id');
+		$this->_init('blog_post', 'blogpost_id');
 	}
 
 

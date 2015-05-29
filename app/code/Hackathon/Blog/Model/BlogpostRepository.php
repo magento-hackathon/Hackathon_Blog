@@ -2,13 +2,10 @@
 
 namespace Hackathon\Blog\Model;
 
-use Hackathon\Blog\Api\Data;
-use Magento\Framework\Api\SearchCriteria;
-use Magento\Framework\Api\Search\FilterGroup;
-use Magento\Framework\Exception\InputException;
-use Hackathon\Blog\Api\int;
-use Hackathon\Blog\Api\srtring;
-use Hackathon\Blog\Model\Resource\Blogpost\Collection as BlogpostCollection;
+use \Magento\Framework\Api\SearchCriteria;
+use \Magento\Framework\Api\Search\FilterGroup;
+use \Magento\Framework\Exception\InputException;
+use \Hackathon\Blog\Model\Resource\Blogpost\Collection as BlogpostCollection;
 
 class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterface {
 
@@ -49,7 +46,7 @@ class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterf
 	 *
 	 * @return \Hackathon\Blog\Api\Data\BlogpostInterface
 	 */
-	public function getById( int $id ) {
+	public function getById( $id ) {
 		if(!isset($this->blogpostsById[$id])) {
 			$blogpost                       = $this->loadBlogpost("load", Blogpost::ID_FIELD, $id);
 			$slug                           = $blogpost->getSlug();
@@ -60,11 +57,11 @@ class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterf
 	}
 
 	/**
-	 * @param srtring $slug
+	 * @param string $slug
 	 *
 	 * @return \Hackathon\Blog\Api\Data\BlogpostInterface
 	 */
-	public function getBySlug( srtring $slug ) {
+	public function getBySlug( $slug ) {
 		if(!isset($this->blogpostsBySlug[$slug])) {
 			$blogpost                       = $this->loadBlogpost("load", "slug", Blogpost::SLUG, $slug);
 			$id                             = $blogpost->getId();
@@ -73,6 +70,7 @@ class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterf
 		}
 		return $this->blogpostsBySlug[$slug];
 	}
+
 
 	/**
 	 * @param $loadMethod
@@ -85,34 +83,26 @@ class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterf
 		$blogpost           = $this->blogpostFactory->create();
 		$blogpost->setStoreId($this->storeManager->getStore()->getId())->$loadMethod($identifier);
 		if(!$blogpost->getId()) {
-			throw NoSuchEntityException::singleField($loadField, $identifier);
+			throw \Magento\Framework\Exception\NoSuchEntityException::singleField($loadField, $identifier);
 		}
 		return $blogpost;
 	}
 
-	/**
-	 * @param Data\BlogpostInterface $blogpost
-	 *
-	 * @return bool
-	 */
-	public function delete( \Hackathon\Blog\Api\Data\BlogpostInterface $blogpost ) {
+	public function delete(\Hackathon\Blog\Api\Data\BlogpostInterface $blogpost) {
 		if($blogpost->getId()) {
 			$blogpost->delete();
-			$slug       = $blogpost->getSlug();
-			unset($this->blogpostsById[$id]);
-			unset($this->blogpostsBySlug[$slug]);
+			unset($this->blogpostsById[$blogpost->getId()]);
+			unset($this->blogpostsBySlug[$blogpost->getSlug()]);
 			return true;
 		}
-		return false;
 	}
-
 
 	/**
 	 * @param int $id
 	 *
 	 * @return bool Will return true if deleted
 	 */
-	public function deleteById( int $id ) {
+	public function deleteById( $id ) {
 		$blogpost       = $this->getById($id);
 		return $this->delete($blogpost);
 	}
@@ -122,26 +112,32 @@ class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterf
 	 *
 	 * @return \Hackathon\Blog\Api\BlogpostSearchResultsInterface
 	 */
-	public function getList( \Magento\Framework\Api\SearchCriteria $searchCriteria ) {
+	public function getList( \Magento\Framework\Api\SearchCriteria $searchCriteria = null ) {
 		$searchData         = $this->searchResultsDataFactory->create();
 		$searchData->setSearchCriteria($searchCriteria);
 
-		foreach ($searchCriteria->getFilterGroups() as $group) {
-			$this->addFilterGroupToCollection($group, $this->quoteCollection);
+		if(!is_null($searchCriteria)) {
+			foreach ($searchCriteria->getFilterGroups() as $group) {
+				$this->addFilterGroupToCollection($group, $this->quoteCollection);
+			}
 		}
 
 		$searchData->setTotalCount($this->blogpostCollection->getSize());
-		$sortOrders = $searchCriteria->getSortOrders();
-		if ($sortOrders) {
-			foreach ($sortOrders as $sortOrder) {
-				$this->blogpostCollection->addOrder(
-					$sortOrder->getField(),
-					$sortOrder->getDirection() == SearchCriteria::SORT_ASC ? 'ASC' : 'DESC'
-				);
+
+		if(!is_null($searchCriteria)) {
+			$sortOrders = $searchCriteria->getSortOrders();
+			if ($sortOrders) {
+				foreach ($sortOrders as $sortOrder) {
+					$this->blogpostCollection->addOrder(
+						$sortOrder->getField(),
+						$sortOrder->getDirection() == SearchCriteria::SORT_ASC ? 'ASC' : 'DESC'
+					);
+				}
 			}
 		}
-		$this->blogpostCollection->setCurPage($searchCriteria->getCurrentPage());
-		$this->blogpostCollection->setPageSize($searchCriteria->getPageSize());
+
+		$this->blogpostCollection->setCurPage($searchCriteria ? $searchCriteria->getCurrentPage() : 0);
+		$this->blogpostCollection->setPageSize($searchCriteria ? $searchCriteria->getPageSize() : 10);
 
 		$searchData->setItems($this->blogpostCollection->getItems());
 
