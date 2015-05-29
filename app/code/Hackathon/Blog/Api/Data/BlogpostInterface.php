@@ -4,6 +4,15 @@ namespace Hackathon\Blog\Api\Data;
 
 interface BlogpostInterface {
 
+	const ID_FIELD      = "blogpost_id";
+	const SLUG          = "slug";
+	const TITLE         = "title";
+	const STATUS        = "status";
+	const CONTENT       = "content";
+	const POSTDATE      = "postdate";
+	const EXCERPT       = "excerpt";
+	const KEYWORDS      = "keywords";
+
 	/**
 	 * @return int
 	 */
@@ -66,7 +75,7 @@ interface BlogpostInterface {
 	/**
 	 * @return string
 	 */
-	public function getPostDate();
+	public function getPostdate();
 
 	/**
 	 * @param string $postdate

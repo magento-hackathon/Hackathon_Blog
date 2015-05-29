@@ -37,5 +37,5 @@ interface BlogpostRepositoryInterface {
 	 *
 	 * @return \Hackathon\Blog\Api\BlogpostSearchResultsInterface
 	 */
-	public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
+	public function getList(\Magento\Framework\Api\SearchCriteria $searchCriteria);
 }
