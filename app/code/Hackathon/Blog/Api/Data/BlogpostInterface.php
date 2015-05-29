@@ -13,6 +13,11 @@ interface BlogpostInterface {
 	const EXCERPT       = "excerpt";
 	const KEYWORDS      = "keywords";
 
+	const STATUS_PUBLISH = 1;
+	const STATUS_SHEDULED = 2;
+	const STATUS_DRAFT = 3;
+	const STATUS_REVIEW = 4;
+
 	/**
 	 * @return int
 	 */
