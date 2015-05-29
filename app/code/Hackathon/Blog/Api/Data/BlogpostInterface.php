@@ -22,7 +22,7 @@ interface BlogpostInterface {
 	 * @param int $id
 	 * @return $this
 	 */
-	public function setId(int $id);
+	public function setId($value);
 
 	/**
 	 * @return string
