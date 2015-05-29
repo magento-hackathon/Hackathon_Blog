@@ -2,6 +2,7 @@
 
 namespace Hackathon\Blog\Model;
 
+use Hackathon\Blog\Api\Data;
 use Magento\Framework\Api\SearchCriteria;
 use Magento\Framework\Api\Search\FilterGroup;
 use Magento\Framework\Exception\InputException;
@@ -90,18 +91,30 @@ class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterf
 	}
 
 	/**
+	 * @param Data\BlogpostInterface $blogpost
+	 *
+	 * @return bool
+	 */
+	public function delete( \Hackathon\Blog\Api\Data\BlogpostInterface $blogpost ) {
+		if($blogpost->getId()) {
+			$blogpost->delete();
+			$slug       = $blogpost->getSlug();
+			unset($this->blogpostsById[$id]);
+			unset($this->blogpostsBySlug[$slug]);
+			return true;
+		}
+		return false;
+	}
+
+
+	/**
 	 * @param int $id
 	 *
 	 * @return bool Will return true if deleted
 	 */
 	public function deleteById( int $id ) {
 		$blogpost       = $this->getById($id);
-		if($blogpost->getId()) {
-			$slug       = $blogpost->getSlug();
-			$blogpost->delete();
-			unset($this->blogpostsById[$id]);
-			unset($this->blogpostsBySlug[$slug]);
-		}
+		return $this->delete($blogpost);
 	}
 
 	/**

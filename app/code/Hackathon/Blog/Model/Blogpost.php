@@ -6,7 +6,7 @@ use \Hackathon\Blog\Api\Data\BlogpostInterface;
 use Hackathon\Blog\Api\Data\int;
 use Hackathon\Blog\Api\Data\string;
 
-class Blogpost extends AbstractExtensibleModel implements BlogpostInterface {
+class Blogpost extends \Magento\Framework\Model\AbstractExtensibleModel implements BlogpostInterface {
 	/**
 	 * @return int
 	 */

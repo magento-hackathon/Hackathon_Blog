@@ -26,6 +26,13 @@ interface BlogpostRepositoryInterface {
 	public function getBySlug(srtring $slug);
 
 	/**
+	 * @param Data\BlogpostInterface $blogpost
+	 *
+	 * @return bool
+	 */
+	public function delete(\Hackathon\Blog\Api\Data\BlogpostInterface $blogpost);
+
+	/**
 	 * @param int $id
 	 *
 	 * @return bool Will return true if deleted

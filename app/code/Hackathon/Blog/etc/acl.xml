@@ -3,6 +3,7 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
+                <resource id="Hackathon_Blog::blogpost" title="Blogpost" />
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Hackathon_Blog::hackathon">
