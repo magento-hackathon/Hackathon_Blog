@@ -27,7 +27,7 @@ interface BlogpostInterface {
 	 * @param int $id
 	 * @return $this
 	 */
-	public function setId($value);
+	public function setId($id);
 
 	/**
 	 * @return string
@@ -39,10 +39,10 @@ interface BlogpostInterface {
 	 *
 	 * @return $this
 	 */
-	public function setSlug(string $slug);
+	public function setSlug($slug);
 
 	/**
-	 * @return string The current status (publish | scheduled | draft | review)
+	 * @return string The current status (publish = 1 | scheduled = 2 | draft = 3 | review = 4)
 	 */
 	public function getStatus();
 
@@ -51,7 +51,7 @@ interface BlogpostInterface {
 	 *
 	 * @return $this
 	 */
-	public function setStatus(string $status);
+	public function setStatus($status);
 
 	/**
 	 * @return string
@@ -63,7 +63,7 @@ interface BlogpostInterface {
 	 *
 	 * @return $this
 	 */
-	public function setTitle(string $title);
+	public function setTitle($title);
 
 	/**
 	 * @return string
@@ -75,7 +75,7 @@ interface BlogpostInterface {
 	 *
 	 * @return $this
 	 */
-	public function setContent(string $content);
+	public function setContent($content);
 
 	/**
 	 * @return string
@@ -87,7 +87,7 @@ interface BlogpostInterface {
 	 *
 	 * @return $this
 	 */
-	public function setPostdate(string $postdate);
+	public function setPostdate($postdate);
 
 	/**
 	 * @return string
@@ -99,7 +99,7 @@ interface BlogpostInterface {
 	 *
 	 * @return $this
 	 */
-	public function setKeywords(string $keywords);
+	public function setKeywords($keywords);
 
 	/**
 	 * @return string
@@ -111,5 +111,5 @@ interface BlogpostInterface {
 	 *
 	 * @return $this
 	 */
-	public function setExcerpt(string $excerpt);
+	public function setExcerpt($excerpt);
 }
