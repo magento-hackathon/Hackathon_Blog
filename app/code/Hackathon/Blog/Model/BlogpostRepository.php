@@ -6,8 +6,6 @@ use Hackathon\Blog\Api\Data;
 use Magento\Framework\Api\SearchCriteria;
 use Magento\Framework\Api\Search\FilterGroup;
 use Magento\Framework\Exception\InputException;
-use Hackathon\Blog\Api\int;
-use Hackathon\Blog\Api\srtring;
 use Hackathon\Blog\Model\Resource\Blogpost\Collection as BlogpostCollection;
 
 class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterface {
@@ -49,7 +47,7 @@ class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterf
 	 *
 	 * @return \Hackathon\Blog\Api\Data\BlogpostInterface
 	 */
-	public function getById( int $id ) {
+	public function getById( $id ) {
 		if(!isset($this->blogpostsById[$id])) {
 			$blogpost                       = $this->loadBlogpost("load", Blogpost::ID_FIELD, $id);
 			$slug                           = $blogpost->getSlug();
@@ -64,7 +62,7 @@ class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterf
 	 *
 	 * @return \Hackathon\Blog\Api\Data\BlogpostInterface
 	 */
-	public function getBySlug( srtring $slug ) {
+	public function getBySlug( $slug ) {
 		if(!isset($this->blogpostsBySlug[$slug])) {
 			$blogpost                       = $this->loadBlogpost("load", "slug", Blogpost::SLUG, $slug);
 			$id                             = $blogpost->getId();
@@ -83,7 +81,7 @@ class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterf
 	 */
 	protected function loadBlogpost($loadMethod, $loadField, $identifier) {
 		$blogpost           = $this->blogpostFactory->create();
-		$blogpost->setStoreId($this->storeManager->getStore()->getId())->$loadMethod($identifier);
+		$blogpost->setStoreId($this->storeManager->getStore()->getId())->$loadMethod($identifier, $loadField);
 		if(!$blogpost->getId()) {
 			throw NoSuchEntityException::singleField($loadField, $identifier);
 		}
@@ -112,7 +110,7 @@ class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterf
 	 *
 	 * @return bool Will return true if deleted
 	 */
-	public function deleteById( int $id ) {
+	public function deleteById( $id ) {
 		$blogpost       = $this->getById($id);
 		return $this->delete($blogpost);
 	}
@@ -127,7 +125,7 @@ class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterf
 		$searchData->setSearchCriteria($searchCriteria);
 
 		foreach ($searchCriteria->getFilterGroups() as $group) {
-			$this->addFilterGroupToCollection($group, $this->quoteCollection);
+			$this->addFilterGroupToCollection($group, $this->blogpostCollection);
 		}
 
 		$searchData->setTotalCount($this->blogpostCollection->getSize());
