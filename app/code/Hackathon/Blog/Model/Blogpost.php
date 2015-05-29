@@ -11,23 +11,6 @@ class Blogpost extends \Magento\Framework\Model\AbstractExtensibleModel implemen
 	}
 
 	/**
-	 * @return int
-	 */
-	public function getId() {
-		return $this->_getData(self::ID_FIELD);
-	}
-
-	/**
-	 * @param int $id
-	 *
-	 * @return $this
-	 */
-	public function setId( $id ) {
-		return $this->setData(self::ID_FIELD, $id);
-	}
-
-
-	/**
 	 * @return string
 	 */
 	public function getSlug() {

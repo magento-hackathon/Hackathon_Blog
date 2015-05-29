@@ -1,6 +1,6 @@
 <?php
 
-namespace \Hackathon\Blog\Model\Resource\Blogpost;
+namespace Hackathon\Blog\Model\Resource\Blogpost;
 
 class Collection extends \Magento\Framework\Model\Resource\Db\Collection\AbstractCollection {
 
