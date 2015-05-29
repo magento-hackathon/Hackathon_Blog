@@ -7,22 +7,6 @@ use Hackathon\Blog\Api\Data\int;
 use Hackathon\Blog\Api\Data\string;
 
 class Blogpost extends \Magento\Framework\Model\AbstractExtensibleModel implements BlogpostInterface {
-	/**
-	 * @return int
-	 */
-	public function getId() {
-		return $this->_getData(self::ID_FIELD);
-	}
-
-	/**
-	 * @param int $id
-	 *
-	 * @return $this
-	 */
-	public function setId( int $id ) {
-		return $this->setData(self::ID_FIELD, $id);
-	}
-
 
 	/**
 	 * @return string
