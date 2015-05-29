@@ -28,13 +28,13 @@ class InstallData implements InstallDataInterface
             \Hackathon\Blog\Model\Blogpost::STATUS_REVIEW => 'Review',
         ];
 
-        /*
+
 
         foreach ($blogpostStatuses as $k => $v) {
             $bind = ['status_id' => $k, 'status_code' => $v];
-            $installer->getConnection()->insertForce($installer->getTable('blogpost_status'), $bind);
+            $installer->getConnection()->insertForce($installer->getTable('blog_post_status'), $bind);
         }
-        */
+
     }
 
 }

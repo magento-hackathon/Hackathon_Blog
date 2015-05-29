@@ -21,16 +21,34 @@ class InstallSchema implements InstallSchemaInterface
     {
         $installer = $setup;
 
+        $installer->startSetup();
+
+        /**
+         * Create table 'blog_post_status'
+         */
+        $table = $installer->getConnection()
+            ->newTable($installer->getTable('blog_post_status'))
+            ->addColumn(
+                'status_id',
+                \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                null,
+                ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
+                'Status id'
+            )
+            ->addColumn(
+                'status_code',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                32,
+                ['nullable' => false],
+                'Status code'
+            )
+            ->setComment('Blogpost statuses');
+
+
+        $installer->getConnection()->createTable($table);
+
         /**
          * Create table 'blog_post'
-         * int blogpost_id +
-         * string title +
-         * string content +
-         * string slug +
-         * string status         (publish 1 | scheduled 2 | draft 3 | review 4) +-
-         * string keywords +
-         * string excerpt +
-         * string postdate +
          */
 
         $table = $installer->getConnection()->newTable(
@@ -77,8 +95,34 @@ class InstallSchema implements InstallSchemaInterface
             null,
             [],
             'Post create date'
-        );
+        )
+        //
+        ->addColumn(
+            'status_id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+            null,
+            ['unsigned' => true, 'nullable' => false, 'default' => '0'],
+            'Status code id'
+        )
+        ->addIndex(
+            $installer->getIdxName('blog_post', ['blogpost_id']),
+            ['blogpost_id']
+        )
+        ->addIndex(
+            $installer->getIdxName('blog_post', ['status_id']),
+            ['status_id']
+        )
+        ->addForeignKey(
+            $installer->getFkName('blog_post', 'status_id', 'blog_post_status', 'status_id'),
+            'status_id',
+            $installer->getTable('blog_post_status'),
+            'status_id',
+            \Magento\Framework\DB\Ddl\Table::ACTION_NO_ACTION
+        )
+        ;
         $installer->getConnection()->createTable($table);
+
+        $setup->endSetup();
 
     }
 
