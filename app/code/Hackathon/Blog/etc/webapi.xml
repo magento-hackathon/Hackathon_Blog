@@ -23,19 +23,19 @@
     <route url="/V1/hackathon_blog/" method="POST">
         <service class="Hackathon\Blog\Api\BlogpostRepositoryInterface" method="save" />
         <resources>
-            <resource ref="Hackathon_Blog::manage" />
+            <resource ref="anonymous" />
         </resources>
     </route>
     <route url="/V1/hackathon_blog/" method="PUT">
         <service class="Hackathon\Blog\Api\BlogpostRepositoryInterface" method="save" />
         <resources>
-            <resource ref="Hackathon_Blog::manage" />
+            <resource ref="anonymous" />
         </resources>
     </route>
     <route url="/V1/hackathon_blog/:id" method="DELETE">
         <service class="Hackathon\Blog\Api\BlogpostRepositoryInterface" method="deleteById" />
         <resources>
-            <resource ref="Hackathon_Blog::manage" />
+            <resource ref="anonymous" />
         </resources>
     </route>
 </routes>

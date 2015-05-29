@@ -96,9 +96,8 @@ class BlogpostRepository implements \Hackathon\Blog\Api\BlogpostRepositoryInterf
 	public function delete( \Hackathon\Blog\Api\Data\BlogpostInterface $blogpost ) {
 		if($blogpost->getId()) {
 			$blogpost->delete();
-			$slug       = $blogpost->getSlug();
-			unset($this->blogpostsById[$id]);
-			unset($this->blogpostsBySlug[$slug]);
+			unset($this->blogpostsById[$blogpost->getId()]);
+			unset($this->blogpostsBySlug[$blogpost->getSlug()]);
 			return true;
 		}
 		return false;

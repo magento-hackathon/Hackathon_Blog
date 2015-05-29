@@ -4,4 +4,6 @@
                 type="Hackathon\Blog\Model\BlogpostRepository" />
     <preference for="Hackathon\Blog\Api\Data\BlogpostSearchResultsInterface"
                 type="Magento\Framework\Api\SearchResults" />
+    <preference for="Hackathon\Blog\Api\Data\BlogpostInterface"
+                type="Hackathon\Blog\Model\Blogpost" />
 </config>
