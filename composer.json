@@ -1,0 +1,12 @@
+{
+  "name": "magento-hackathon/hackathon-blog",
+  "type": "magento-module",
+  "license":"OSL-3.0",
+  "description":"Module for Magento Blogs at Magento 2",
+  "authors":[
+    {
+      "name":"Magento Hackathon",
+      "email":"author@example.com"
+    }
+  ]
+}
