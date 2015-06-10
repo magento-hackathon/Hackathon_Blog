@@ -1,9 +1,9 @@
 {
   "name": "magento-hackathon/hackathon-blog",
-  "type": "magento-module",
+  "type": "magento2-module",
   "extra": {
         "map": [
-            ["*", "Hackathon/Blog"]
+            ["app/code/Hackathon/Blog", "Hackathon/Blog"]
         ]
     },
   "license":"OSL-3.0",
