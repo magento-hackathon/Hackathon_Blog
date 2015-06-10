@@ -3,7 +3,7 @@
   "type": "magento-module",
   "extra": {
         "map": [
-            ["app/code/Hackathon/Blog", "Hackathon/Blog"]
+            ["*", "Hackathon/Blog"]
         ]
     },
   "license":"OSL-3.0",
