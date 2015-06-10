@@ -5,7 +5,7 @@
         "map": [
             ["app/code/Hackathon/Blog", "app/code/Hackathon/Blog"]
         ]
-    }
+    },
   "license":"OSL-3.0",
   "description":"Module for Magento Blogs at Magento 2",
   "authors":[
